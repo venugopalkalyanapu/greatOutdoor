@@ -23,8 +23,8 @@ dependencies {
 implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
 // https://mvnrepository.com/artifact/org.mockito/mockito-core
 testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.9.0'
-	//compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
-//compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
 // https://mvnrepository.com/artifact/org.mockito/mockito-core
 testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
 }
