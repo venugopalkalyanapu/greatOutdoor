@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +23,7 @@ import com.cg.go.entity.SalesReportEntity;
 import com.cg.go.exception.SalesReportException;
 import com.cg.go.service.SalesReportService;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 class SalesTest {
 	@Autowired

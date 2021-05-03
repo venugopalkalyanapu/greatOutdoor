@@ -1,33 +1,42 @@
 package com.cg.go.entity;
 
-import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-@Table(name = "wishlist_Table1")
 public class WishlistItemEntity {
+
 	
 	@Id
-	private long wishlistId;
-	private String userId;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cart_seq")
+	@SequenceGenerator(name="cart_seq",sequenceName="cart_seq", allocationSize=1)
+	private Long wishlistId;
+	@OneToOne
+	@JoinColumn(name="user_Id")
+	private UserEntity userId;
 
-	@OneToMany(targetEntity = ProductEntity.class)
-	    private List<ProductEntity> product;
+	@ManyToOne
+	@JoinColumn(name="product_Id")
+	private ProductEntity product;
 	
 
 	public WishlistItemEntity() {
 			super();
 		}
 
-	public List<ProductEntity> getProduct() {
+	public ProductEntity getProduct() {
 		return product;
 	}
 
-	public void setProduct(List<ProductEntity> product) {
+	public void setProduct(ProductEntity product) {
 		this.product = product;
 	}
 
@@ -35,7 +44,7 @@ public class WishlistItemEntity {
 		return wishlistId;
 	}
 
-	public WishlistItemEntity(long wishlistId, String userId,  List<ProductEntity> product) {
+	public WishlistItemEntity(Long wishlistId, UserEntity userId,  ProductEntity product) {
 		super();
 		this.wishlistId = wishlistId;
 		this.userId = userId;
@@ -43,13 +52,13 @@ public class WishlistItemEntity {
 	}
 
 
-	public void setWishlistId(long wishlistId) {
+	public void setWishlistId(Long wishlistId) {
 		this.wishlistId = wishlistId;
 	}
-	public String getUserId() {
+	public UserEntity getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(UserEntity userId) {
 		this.userId = userId;
 	}
 	
@@ -79,6 +88,4 @@ public class WishlistItemEntity {
 			return false;
 		return true;
 	}
-	
-
 }

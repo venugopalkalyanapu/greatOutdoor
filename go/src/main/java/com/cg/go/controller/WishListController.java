@@ -14,20 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.go.entity.WishlistItemEntity;
 import com.cg.go.exception.WishlistException;
-import com.cg.go.service.IProductService;
 import com.cg.go.service.WishListServiceInterface;
-
-
-
-
-
 
 @RestController
 public class WishListController {
 	@Autowired
 	private WishListServiceInterface ws;
-	@Autowired
-	private IProductService ps;
+	
 
 	@GetMapping("findAllItems")
 	public List<WishlistItemEntity> findAllItems() {
@@ -58,9 +51,9 @@ public class WishListController {
 		ws.deleteWishlistByUserId(userId);
 	}
 	
-	@DeleteMapping("deleteAll")
+	@DeleteMapping("deleteAllWishList")
 	public void deleteAll() throws WishlistException {
-		ws.deleteAll();
+		ws.deleteAllWishlist();
 	}
 	
 

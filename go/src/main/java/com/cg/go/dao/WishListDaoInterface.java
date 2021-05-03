@@ -17,6 +17,7 @@ import com.cg.go.entity.WishlistItemEntity;
 @Repository
 
 public interface WishListDaoInterface extends JpaRepository<WishlistItemEntity, Long>{
+	//@Query("select s from WishlistEntity s where s.")
 	
 	//@Query("Select s from WishlistItemEntity s where s.wishListId =?1")
 	//List<WishlistItemEntity> findAllById(String userId);

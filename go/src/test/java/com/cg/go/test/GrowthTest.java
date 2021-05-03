@@ -1,6 +1,7 @@
 package com.cg.go.test;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -12,19 +13,18 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cg.go.dao.GrowthReportDAOinterface;
 import com.cg.go.entity.GrowthReportEntity;
 import com.cg.go.exception.GrowthReportException;
 import com.cg.go.service.GrowthReportService;
 
-@RunWith(SpringRunner.class)
+
 @SpringBootTest
 class GrowthTest {
 	@Autowired

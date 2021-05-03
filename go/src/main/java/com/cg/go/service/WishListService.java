@@ -31,8 +31,6 @@ public class WishListService implements WishListServiceInterface{
 	}
 	
 	
-	
-	
 	@Override
 	public List<WishlistItemEntity> findWishlist(Long wish) {
 		
@@ -56,10 +54,32 @@ public class WishListService implements WishListServiceInterface{
 			wd.deleteById(wid);
 			
 		
-		
 	}
 	
 	
+
+	@Override
+	public WishlistItemEntity addWishlistItem(WishlistItemEntity w) {
+		
+		WishlistItemEntity o=wd.save(w);
+		return o;
+	}
+
+
+
+
+	@Override
+	public void deleteAllWishlist() throws WishlistException {
+		
+		if(wd.findAll().isEmpty()) {
+			throw new WishlistException("There are no items in wishlist to delete");
+			
+		}
+		wd.deleteAll();
+		
+	}
+	
+
 	
 	
 	/*  @Override
@@ -79,31 +99,6 @@ public class WishListService implements WishListServiceInterface{
 	  
 	  return w3;
 	  }*/
-	 
-
-	
-	
-
-	@Override
-	public WishlistItemEntity addWishlistItem(WishlistItemEntity w) {
-		
-		WishlistItemEntity o=wd.save(w);
-		return o;
-	}
-
-
-
-
-	@Override
-	public void deleteAll() throws WishlistException {
-		
-		if(wd.findAll().isEmpty()) {
-			throw new WishlistException("There are no items in wishlist to delete");
-			
-		}
-		wd.deleteAll();
-		
-	}
 
 
 	
