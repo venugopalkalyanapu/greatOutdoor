@@ -28,6 +28,9 @@ testCompile('org.junit.jupiter:junit-jupiter-api')
     testCompile('org.junit.jupiter:junit-jupiter-params')
     testCompile('org.junit.platform:junit-platform-launcher')
     testCompile('org.junit.platform:junit-platform-runner')
+    
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
 }
 
 test {

@@ -1,38 +1,46 @@
-package com.cg.go.entity;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+	package com.cg.go.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name="product_entity")
-public class ProductEntity {
+public class ProductEntity 
+{
 	@Id
+	@GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+    strategy = "org.hibernate.id.UUIDGenerator"
+    )
+@Column(updatable = false, nullable = false)
 	private String productId;
 	private String productName;
 	private double price;
 	private String image;
 	private String color;
 	private String category;
-	private int quantity;
+	private int quantity;   
 	private String manufacturer;
 	private String specification;
+
 	
 	
-
-	@ManyToOne(targetEntity = CartItemEntity.class)
-	private CartItemEntity cart;
-    
-	@ManyToOne(targetEntity = OrderEntity.class)
-	private OrderEntity order;
-
-	public ProductEntity() {
-
+	//Constructors
+	public ProductEntity() 
+	{
+		super();
 	}
-
-	public ProductEntity(String productId, String productName, double price, String image, String color,
-			String category, int quantity, String manufacturer, String specification) {
+	public ProductEntity(String productId, String productName, double price, String image, String color, String category,
+			int quantity, String manufacturer, String specification)
+	{
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -44,7 +52,62 @@ public class ProductEntity {
 		this.manufacturer = manufacturer;
 		this.specification = specification;
 	}
-
+	
+	//Getters And Setters
+	public String getProductId()  {
+		return productId;
+	}
+	public void setProductId(String productId){
+		this.productId = productId;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public String getManufacturer() {
+		return manufacturer;
+	}
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+	public String getSpecification() {
+		return specification;
+	}
+	public void setSpecification(String specification) {
+		this.specification = specification;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -52,7 +115,6 @@ public class ProductEntity {
 		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -69,77 +131,14 @@ public class ProductEntity {
 			return false;
 		return true;
 	}
-
-	public double getPrice() {
-		return price;
+	@Override
+	public String toString() {
+		return "ProductEntity [productId=" + productId + ", productName=" + productName + ", price=" + price
+				+ ", image=" + image + ", color=" + color + ", category=" + category + ", quantity=" + quantity
+				+ ", manufacturer=" + manufacturer + ", specification=" + specification + "]";
 	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getManufacturer() {
-		return manufacturer;
-	}
-
-	public void setManufacturer(String manufacturer) {
-		this.manufacturer = manufacturer;
-	}
-
-	public String getSpecification() {
-		return specification;
-	}
-
-	public void setSpecification(String specification) {
-		this.specification = specification;
-	}
-
-	public String getProductId() {
-		return productId;
-	}
-
-	public void setProductId(String productId) {
-		this.productId = productId;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
+	
+	//HashCode for PrimaryKey
+	
 
 }

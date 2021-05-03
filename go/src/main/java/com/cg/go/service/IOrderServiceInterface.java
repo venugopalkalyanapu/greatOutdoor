@@ -5,6 +5,7 @@ import java.util.List;
 import com.cg.go.entity.OrderEntity;
 import com.cg.go.exception.OrderException;
 
+
 public interface IOrderServiceInterface {
 
 	public OrderEntity addOrder(OrderEntity oe) throws OrderException;
@@ -17,6 +18,7 @@ public interface IOrderServiceInterface {
 
 	public String deleteOrderById(OrderEntity k) throws OrderException;
 
-	//public List<OrderEntity> findOrderByUId(OrderEntity o);
+
+	public OrderEntity findOrderByUId(OrderEntity o);
 
 }

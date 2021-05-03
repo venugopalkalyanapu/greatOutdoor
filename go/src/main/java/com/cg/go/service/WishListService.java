@@ -1,7 +1,12 @@
 package com.cg.go.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+
+
+import java.util.ArrayList;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.cg.go.dao.WishListDaoInterface;
 import com.cg.go.entity.WishlistItemEntity;
 import com.cg.go.exception.WishlistException;
+
+
 @Service
 public class WishListService implements WishListServiceInterface{
 	
@@ -26,35 +33,36 @@ public class WishListService implements WishListServiceInterface{
 	
 	
 	
-
-	
 	@Override
-	public List<WishlistItemEntity> findWishlist(String userId) {
-		WishlistItemEntity w1 = new WishlistItemEntity();
-
-		List<WishlistItemEntity> list = new ArrayList<>();
-		//if (w1.getUserId().equalsIgnoreCase(userId))
-		list=wd.findAllById(userId);
-		System.out.println(list);
+	public List<WishlistItemEntity> findWishlist(Long wish) {
+		
+		Optional<WishlistItemEntity> k=wd.findById(wish);
+		WishlistItemEntity l=k.get();
+		List<WishlistItemEntity> list=new ArrayList<>();
+		list.add(l);
 		return list;
 	}
 	 
 
 	
 	@Override
-	public void deleteWishlistByUserId(String userId) throws WishlistException {
-			List<WishlistItemEntity> w2= wd.findAllById(userId);
-			if(w2.isEmpty()) {
-				throw new WishlistException("Unable to delete without userId");
+	public void deleteWishlistByUserId(Long wid) throws WishlistException {
+		
+		Optional<WishlistItemEntity> k=wd.findById(wid);
+		WishlistItemEntity l=k.get();
+			if(l.equals(null)) {
+				throw new WishlistException("Unable to find items in wishlist to delete");
 			}
-			wd.deleteAll(w2);
+			wd.deleteById(wid);
 			
 		
 		
 	}
 	
 	
-	  @Override
+	
+	
+	/*  @Override
 	  public List<WishlistItemEntity> findWishlistItem(String productId, String userId) throws WishlistException {
 	  List<WishlistItemEntity> w3=new ArrayList<WishlistItemEntity>();
 	  
@@ -70,7 +78,7 @@ public class WishListService implements WishListServiceInterface{
 	  
 	  
 	  return w3;
-	  }
+	  }*/
 	 
 
 	
@@ -78,28 +86,38 @@ public class WishListService implements WishListServiceInterface{
 
 	@Override
 	public WishlistItemEntity addWishlistItem(WishlistItemEntity w) {
-		// TODO Auto-generated method stub
 		
 		WishlistItemEntity o=wd.save(w);
 		return o;
 	}
 
+
+
+
+	@Override
+	public void deleteAll() throws WishlistException {
+		
+		if(wd.findAll().isEmpty()) {
+			throw new WishlistException("There are no items in wishlist to delete");
+			
+		}
+		wd.deleteAll();
+		
+	}
+
+
 	
-
-
-
-	
-	  @Override public void deleteBywishlistitem(String productId,String userId) throws WishlistException {
+	/*  @Override public void deleteBywishlistitem(String productId,String userId) throws WishlistException {
 	  
 		  List<WishlistItemEntity> w2= wd.findAll();
 		  for(WishlistItemEntity w1:w2) {
-			  if(!w1.getUserId().equalsIgnoreCase(userId)) {
+			  if(!w1.getUserId().equals(w2)) {
 				  throw new WishlistException("Unable to delete without productId and userId");
 			  }
 			  wd.deleteById(w1.getWishlistId());
 		  }
 	  
-	  }
+	  }*/
 	 
 	 
 

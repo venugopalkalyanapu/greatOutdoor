@@ -23,7 +23,6 @@ public class WishlistItemEntity {
 			super();
 		}
 
-	
 	public List<ProductEntity> getProduct() {
 		return product;
 	}

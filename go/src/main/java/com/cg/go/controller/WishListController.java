@@ -1,12 +1,10 @@
 package com.cg.go.controller;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.catalina.authenticator.SavedRequest;
-import org.postgresql.jdbc.AutoSave;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,11 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.go.entity.ProductEntity;
 import com.cg.go.entity.WishlistItemEntity;
 import com.cg.go.exception.WishlistException;
 import com.cg.go.service.IProductService;
 import com.cg.go.service.WishListServiceInterface;
+
+
+
+
+
 
 @RestController
 public class WishListController {
@@ -40,41 +42,44 @@ public class WishListController {
 		return o;
 	}
 
-	@GetMapping("findwishlist/{userId}")
-	public List<WishlistItemEntity> findWishlist(@PathVariable String userId) {
-		 List<WishlistItemEntity> products=ws.findWishlist(userId);
+	@GetMapping("findwishlist/{wishlistid}")
+	public List<WishlistItemEntity> findWishlist(@PathVariable("wishlistid") Long wishlistid) {
+		//WishlistItemEntity wish=new WishlistItemEntity();
+		//wish.setWishlistId(wishlistid);
+		 List<WishlistItemEntity> products=ws.findWishlist(wishlistid);
 		return products;
 
 	}
 	
+ 
+	
+	@DeleteMapping("deletewishlist/{wid}")
+	public void deleteWishlistByUserId(@PathVariable("wid") Long userId) throws WishlistException {
+		ws.deleteWishlistByUserId(userId);
+	}
+	
+	@DeleteMapping("deleteAll")
+	public void deleteAll() throws WishlistException {
+		ws.deleteAll();
+	}
+	
 
 	
-	  @GetMapping("findWishlistItem/{productId}/{userId}")
+	 /* @GetMapping("findWishlistItem/{productId}/{userId}")
 	  public List<WishlistItemEntity> findWishlistItem(@PathVariable String productId,@PathVariable String userId) throws WishlistException {
+	  WishlistItemEntity wish=new WishlistItemEntity();
 	  
 	  List<WishlistItemEntity> w2 = new ArrayList<WishlistItemEntity>(); 
 	  return w2=ws.findWishlistItem(productId,userId);
 	  
-	  
-	  
-	  }
-	 
+	  }*/
 	
-	
-	
-
-	@DeleteMapping("deletewishlist/{userId}")
-	public void deleteWishlistByUserId(@PathVariable String userId) throws WishlistException {
-		ws.deleteWishlistByUserId(userId);
-	}
-	
-	
-	  @DeleteMapping("deleteWishlistItem/{productId}/{userId}")
+	 /* @DeleteMapping("deleteWishlistItem/{productId}/{userId}")
 	  public void deleteBywishlistitem(@PathVariable String productId, @PathVariable String userId) throws WishlistException {
 	  
 	  ws.deleteBywishlistitem(productId, userId);
 	  
-	  }
+	  }*/
 	 
 	
 	

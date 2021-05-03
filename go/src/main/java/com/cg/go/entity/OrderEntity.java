@@ -2,29 +2,46 @@ package com.cg.go.entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class OrderEntity {
 	@Id
+	@GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+    strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(updatable = false, nullable = false)
 	private String orderId;
-	private String userId;
-	@OneToMany(targetEntity = ProductEntity.class)
-	private List<ProductEntity> products;
+	@OneToOne
+	@JoinColumn(name="user_Id")
+	private UserEntity userId;
+	@ManyToOne
+	@JoinColumn(name="product_id")
+	private ProductEntity products;
 	private double Quantity;
 	private double totalPrice;
 	private long totalQuantity;
 	private LocalDate dispatchDate;
 	private LocalDate deliveryDate;
-	
-	
-	
+
+
+    //Constructor using fields and without using Fields
 	public OrderEntity() {
 		super();
 	}
-	public OrderEntity(String orderId, String userId, List<ProductEntity> products, double totalPrice,
+	public OrderEntity(String orderId, UserEntity userId, ProductEntity products, double totalPrice,
 			long totalQuantity, LocalDate dispatchDate, LocalDate deliveryDate) {
 		super();
 		this.orderId = orderId;
@@ -35,22 +52,25 @@ public class OrderEntity {
 		this.dispatchDate = dispatchDate;
 		this.deliveryDate = deliveryDate;
 	}
+	
+	
+	//Getters and setters
 	public String getOrderId() {
 		return orderId;
 	}
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
-	public String getUserId() {
+	public UserEntity getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(UserEntity userId) {
 		this.userId = userId;
 	}
-	public List<ProductEntity> getProducts() {
+	public ProductEntity getProducts() {
 		return products;
 	}
-	public void setProducts(List<ProductEntity> products) {
+	public void setProducts(ProductEntity products) {
 		this.products = products;
 	}
 	public double getTotalPrice() {
@@ -83,6 +103,9 @@ public class OrderEntity {
 	public void setQuantity(double quantity) {
 		Quantity = quantity;
 	}
+	
+	
+	//Hashcode for primaryKey
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -106,5 +129,12 @@ public class OrderEntity {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "OrderEntity [orderId=" + orderId + ", userId=" + userId + ", products=" + products + ", Quantity="
+				+ Quantity + ", totalPrice=" + totalPrice + ", totalQuantity=" + totalQuantity + ", dispatchDate="
+				+ dispatchDate + ", deliveryDate=" + deliveryDate + "]";
+	}
 	
+
 }

@@ -16,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.cg.go.dao.ICartDaoInterface;
 import com.cg.go.entity.CartItemEntity;
 import com.cg.go.entity.ProductEntity;
+import com.cg.go.entity.UserEntity;
 import com.cg.go.exception.CartException;
 import com.cg.go.exception.OrderException;
 import com.cg.go.exception.ProductException;
@@ -41,10 +42,9 @@ public class CartTest {
 	void testAddCart() throws ProductException, CartException{
 		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
 		ProductEntity p2=new ProductEntity("124","santor",245.00,"imagee","red","essentials",2,"venu","childcare");
-		List<ProductEntity> p=new ArrayList<>();
-		p.add(p1);
-		p.add(p2);
-		CartItemEntity cr=new CartItemEntity(123l,"venu",432.00,1299l,p);
+		UserEntity u=new UserEntity("venu","1","customer","9014475650");
+		
+		CartItemEntity cr=new CartItemEntity(123l,u,432.00,1299l,p1);
 		when(icd.save(cr)).thenReturn(cr);
 		assertEquals(cr, ics.addCartItem(cr));
 	}
@@ -53,9 +53,12 @@ public class CartTest {
 	@Test
 	void testUpdateCart() {
 		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
+		ProductEntity p2=new ProductEntity("124","santor",245.00,"imagee","red","essentials",2,"venu","childcare");
+		UserEntity u=new UserEntity("venu","1","customer","9014475650");
 		List<ProductEntity> p=new ArrayList<>();
 		p.add(p1);
-		CartItemEntity cr=new CartItemEntity(123l,"venu",432.00,1299l,p);
+		p.add(p2);
+		CartItemEntity cr=new CartItemEntity(123l,u,432.00,1299l,p1);
 		when(icd.save(cr)).thenReturn(cr);
 		assertEquals(cr, ics.updateCart(cr));
 	}

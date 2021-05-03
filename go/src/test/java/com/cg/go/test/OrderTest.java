@@ -19,6 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.cg.go.dao.IOrderDaoInterface;
 import com.cg.go.entity.OrderEntity;
 import com.cg.go.entity.ProductEntity;
+import com.cg.go.entity.UserEntity;
 import com.cg.go.exception.OrderException;
 import com.cg.go.service.IOrderService;
 
@@ -44,11 +45,8 @@ public class OrderTest {
 	@Test
 	void testAddOrder() throws OrderException{
 		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
-		ProductEntity p2=new ProductEntity("124","santor",245.00,"imagee","red","essentials",2,"venu","childcare");
-        List<ProductEntity> p=new ArrayList<>();
-        p.add(p1);
-        p.add(p2);
-		OrderEntity o=new OrderEntity("123","raju",p,2.0,980l,LocalDate.now(),LocalDate.now());
+        UserEntity u=new UserEntity("venu","1","customer","9014475650");
+		OrderEntity o=new OrderEntity("123",u,p1,2.0,980l,LocalDate.now(),LocalDate.now());
 		when(order.save(o)).thenReturn(o);
 		assertEquals(o, service.addOrder(o));
 	}
@@ -58,11 +56,12 @@ public class OrderTest {
 	@Test
 	void testfindAllOrders() {
 		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
-		ProductEntity p2=new ProductEntity("124","santor",245.00,"imagee","red","essentials",2,"venu","childcare");
-        List<ProductEntity> p=new ArrayList<>();
-        p.add(p1);
-        p.add(p2);
-        OrderEntity o=new OrderEntity("123","raju",p,2.0,980l,LocalDate.now(),LocalDate.now());
+	ProductEntity p2=new ProductEntity("124","santor",245.00,"imagee","red","essentials",2,"venu","childcare");
+	List<ProductEntity>p= new ArrayList<>();
+	p.add(p2);
+	p.add(p1);
+    UserEntity u=new UserEntity("venu","1","customer","9014475650");
+	OrderEntity o=new OrderEntity("123",u,p1,2.0,980l,LocalDate.now(),LocalDate.now());
         assertEquals(2,p.size());
 	}
 	
