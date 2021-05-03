@@ -60,8 +60,6 @@ public class OrderTest {
 	List<ProductEntity>p= new ArrayList<>();
 	p.add(p2);
 	p.add(p1);
-    UserEntity u=new UserEntity("venu","1","customer","9014475650");
-	OrderEntity o=new OrderEntity("123",u,p1,2.0,980l,LocalDate.now(),LocalDate.now());
         assertEquals(2,p.size());
 	}
 	

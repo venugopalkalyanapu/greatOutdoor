@@ -3,7 +3,6 @@ package com.cg.go.entity;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import org.springframework.http.HttpStatus;
 
 @Entity
 public class UserEntity {
