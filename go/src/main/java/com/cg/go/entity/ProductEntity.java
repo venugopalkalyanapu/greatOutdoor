@@ -20,7 +20,7 @@ public class ProductEntity
         name = "UUID",
     strategy = "org.hibernate.id.UUIDGenerator"
     )
-@Column(updatable = false, nullable = false)
+    @Column(updatable = false, nullable = false)
 	private String productId;
 	private String productName;
 	private double price;
