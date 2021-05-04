@@ -26,16 +26,16 @@ import com.cg.go.service.CustomerServiceInterface;
 			return si.addCustomerService(ee);
 			}
 		@GetMapping("viewCustomer/{id}")
-		public CustomerEntity viewCustomer(@PathVariable ("id") String ci) {
+		public CustomerEntity viewCustomer(@PathVariable ("id") long ci) {
 			return si.viewCustomer(ci);
 		}
 		
 		@PutMapping("updateCustomer/{id}")
-		public CustomerEntity updateCUstomer(@PathVariable ("id") String ss,@RequestBody CustomerEntity cc) {
+		public CustomerEntity updateCUstomer(@PathVariable ("id") long ss,@RequestBody CustomerEntity cc) {
 			return si.updateCustomer(cc);
 		}
 		@DeleteMapping("removeCustomer/{id}")
-		public String removeCustomer(@PathVariable ("id") String ss) {
+		public String removeCustomer(@PathVariable ("id") long ss) {
 			CustomerEntity c1 = new CustomerEntity();
 			c1.setCustomerId(ss);
 			return si.removeCustomer(c1);

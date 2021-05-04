@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.cg.go.entity.CustomerEntity;
 
 @Repository
-public interface CustomerDAOInterface extends JpaRepository <CustomerEntity, String>{
+public interface CustomerDAOInterface extends JpaRepository <CustomerEntity, Long>{
 
 }

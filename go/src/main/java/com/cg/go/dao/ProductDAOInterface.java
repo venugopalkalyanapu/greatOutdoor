@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.cg.go.entity.ProductEntity;
 
 @Repository
-public interface ProductDAOInterface extends JpaRepository<ProductEntity, String> {
+public interface ProductDAOInterface extends JpaRepository<ProductEntity, Integer> {
 	@Query("Select t from ProductEntity t where t.category=?1")
 	public List<ProductEntity> findByProductCategory(String productCategory);
 

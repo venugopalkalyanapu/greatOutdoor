@@ -18,7 +18,7 @@ public class ProductService implements IProductService {
 
 	@Override
 	public ProductEntity addProduct(ProductEntity productEntity) throws ProductException {
-		String id = productEntity.getProductId();
+		int id = productEntity.getProductId();
 		if (productDao.existsById(id))
 			throw new ProductException("Product not found");
 		// handler method to save a product
@@ -26,7 +26,7 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public ProductEntity findByProductId(String s) {
+	public ProductEntity findByProductId(int s) {
 		Optional<ProductEntity> o = productDao.findById(s);
 		// handler method to get a product
 		ProductEntity e = o.get();
@@ -35,7 +35,7 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public void deleteByProductId(String s) throws ProductException {
+	public void deleteByProductId(int s) throws ProductException {
 		Optional<ProductEntity> optional = productDao.findById(s);
 		if (!optional.isPresent())
 			throw new ProductException("Product details not found for id " + s);
@@ -63,7 +63,7 @@ public class ProductService implements IProductService {
 
 	@Override
 	public ProductEntity updateProduct(ProductEntity productEntity) throws ProductException {
-		String id = productEntity.getProductId();
+		int id = productEntity.getProductId();
 		if (productDao.existsById(id))
 			// handler method to update a product
 			return productDao.save(productEntity);
@@ -72,7 +72,7 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public void updateProductQuantity(int quantity, String productId) {
+	public void updateProductQuantity(int quantity, int productId) {
 		Optional<ProductEntity> o = productDao.findById(productId);
 		ProductEntity e = o.get();
 		e.setQuantity(quantity);

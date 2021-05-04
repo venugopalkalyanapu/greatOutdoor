@@ -9,7 +9,7 @@ public interface IProductService {
 
 	ProductEntity addProduct(ProductEntity pe) throws ProductException;
 
-	ProductEntity findByProductId(String s);
+	ProductEntity findByProductId(int s);
 
 	List<ProductEntity> findByProductCategory(String productCategory);
 
@@ -17,9 +17,9 @@ public interface IProductService {
 
 	ProductEntity updateProduct(ProductEntity productEntity) throws ProductException;
 
-	void updateProductQuantity(int quantity, String productId);
+	void updateProductQuantity(int quantity, int productId);
 
-	void deleteByProductId(String s) throws ProductException;
+	void deleteByProductId(int s) throws ProductException;
 
 	List<ProductEntity> search(String keyword);
 

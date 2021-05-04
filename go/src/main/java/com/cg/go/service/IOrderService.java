@@ -51,7 +51,7 @@ public class IOrderService implements IOrderServiceInterface
 	@Override
 	public String updateDate(OrderEntity o) throws OrderException 
 	{
-		String k=o.getOrderId();
+		int k=o.getOrderId();
 		if(iod.existsById(k)) {
 			throw new OrderException("There is no such order id to update");
 		}
@@ -64,7 +64,7 @@ public class IOrderService implements IOrderServiceInterface
 	@Override
 	public String deleteOrderById(OrderEntity k) throws OrderException
 	{
-		String g=k.getOrderId();
+		int g=k.getOrderId();
 		if(iod.existsById(g)) {
 			iod.deleteById(g);
 			return "delete succesful";
@@ -79,7 +79,7 @@ public class IOrderService implements IOrderServiceInterface
 
 	@Override
 	public OrderEntity findOrderByUId(OrderEntity o) {
-		String k=o.getOrderId();
+		int k=o.getOrderId();
 		Optional<OrderEntity> p= iod.findById(k);
 	    OrderEntity g=p.get();
 		return g;

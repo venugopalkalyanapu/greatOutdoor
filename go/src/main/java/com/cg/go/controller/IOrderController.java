@@ -49,7 +49,7 @@ public class IOrderController {
 	
 	//Delete Order By Using Order Id
 	@DeleteMapping("deleteOrderById/{oid}")
-	public String deleteOrderById(@PathVariable("oid") String o)throws OrderException{
+	public String deleteOrderById(@PathVariable("oid") int o)throws OrderException{
 		OrderEntity k=new OrderEntity();
 		k.setOrderId(o);
 		return ios.deleteOrderById(k);
@@ -60,7 +60,7 @@ public class IOrderController {
 	
 	//Update Date using Order Id
 	@PutMapping("updateDate/{oid}/{diD}/{deD}")
-	public String updateDate(@PathVariable(name="oid") String s,@PathVariable(name="diD") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate k,
+	public String updateDate(@PathVariable(name="oid") int s,@PathVariable(name="diD") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate k,
 			@PathVariable(name="deD") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate g ) throws OrderException {
 		OrderEntity o=new  OrderEntity();
 		o.setDispatchDate(k);
@@ -72,7 +72,7 @@ public class IOrderController {
 	
 	
 	@GetMapping("findOrderByUId/{oid}")
-    public OrderEntity findOrderByUId(@PathVariable ("oid") String s){
+    public OrderEntity findOrderByUId(@PathVariable ("oid") int s){
 	OrderEntity o=new OrderEntity();
 	o.setOrderId(s);
 	return ios.findOrderByUId(o);

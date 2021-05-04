@@ -5,7 +5,7 @@ import java.util.List;
 import com.cg.go.entity.CustomerEntity;
 
 public interface CustomerServiceInterface {
-	CustomerEntity viewCustomer(String ci);
+	CustomerEntity viewCustomer(long ci);
 
 	CustomerEntity addCustomerService(CustomerEntity ee);
 

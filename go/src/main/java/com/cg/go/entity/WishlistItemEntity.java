@@ -16,9 +16,9 @@ public class WishlistItemEntity {
 
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cart_seq")
-	@SequenceGenerator(name="cart_seq",sequenceName="cart_seq", allocationSize=1)
-	private Long wishlistId;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="wish_seq")
+	@SequenceGenerator(name="wish_seq",sequenceName="wish_seq", allocationSize=1)
+	private long wishlistId;
 	@OneToOne
 	@JoinColumn(name="user_Id")
 	private UserEntity userId;

@@ -1,8 +1,15 @@
 package com.cg.go.entity;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.GenericGenerator;
 	
 	@Entity
 	public class AddressEntity implements Serializable{
@@ -10,7 +17,9 @@ import javax.persistence.Id;
 		private static final long serialVersionUID = 1L;
 		
 		@Id
-		private String addressId;
+		@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="add_seq")
+		@SequenceGenerator(name="add_seq",sequenceName="add_seq", allocationSize=1)
+		private long addressId;
 		private String buildingNo;
 		private String streetName;
 		private String area;
@@ -19,7 +28,7 @@ import javax.persistence.Id;
 		private String zip;
 		
 		public AddressEntity() {}
-		public AddressEntity(String addressId, String buildingNo, String streetName, String area, String city, String state,
+		public AddressEntity(long addressId, String buildingNo, String streetName, String area, String city, String state,
 				String zip) {
 			super();
 			this.addressId=addressId;
@@ -30,10 +39,10 @@ import javax.persistence.Id;
 			this.state = state;
 			this.zip = zip;
 		}
-		public String getAddressId() {
+		public long getAddressId() {
 			return addressId;
 		}
-		public void setAddressId(String addressId) {
+		public void setAddressId(long addressId) {
 			this.addressId = addressId;
 		}
 		public String getBuildingNo() {
@@ -70,13 +79,12 @@ import javax.persistence.Id;
 			return zip;
 		}
 		public void setZip(String zip) {
-			this.zip = zip;
 		}
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((addressId == null) ? 0 : addressId.hashCode());
+			result = prime * result + (int) (addressId ^ (addressId >>> 32));
 			return result;
 		}
 		@Override
@@ -88,13 +96,16 @@ import javax.persistence.Id;
 			if (getClass() != obj.getClass())
 				return false;
 			AddressEntity other = (AddressEntity) obj;
-			if (addressId == null) {
-				if (other.addressId != null)
-					return false;
-			} else if (!addressId.equals(other.addressId))
+			if (addressId != other.addressId)
 				return false;
 			return true;
 		}
+		@Override
+		public String toString() {
+			return "AddressEntity [addressId=" + addressId + ", buildingNo=" + buildingNo + ", streetName=" + streetName
+					+ ", area=" + area + ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
+		}
+		
 		
 	}
 		

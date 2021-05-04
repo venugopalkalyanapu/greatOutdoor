@@ -17,7 +17,7 @@ public class CustomerService implements CustomerServiceInterface {
 	public CustomerDAOInterface cd;
 
 	
-	public CustomerEntity viewCustomer(String ci) {
+	public CustomerEntity viewCustomer(long ci) {
 		//String a = ci.getCustomerId();
 		Optional<CustomerEntity> oo= cd.findById(ci);
 		CustomerEntity cc = oo.get();

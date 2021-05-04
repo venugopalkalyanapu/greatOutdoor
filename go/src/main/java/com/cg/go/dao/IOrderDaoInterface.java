@@ -9,7 +9,7 @@ import com.cg.go.entity.OrderEntity;
 
 
 @Repository
-public interface IOrderDaoInterface extends JpaRepository<OrderEntity, String> {
+public interface IOrderDaoInterface extends JpaRepository<OrderEntity, Integer> {
 	
 
 }

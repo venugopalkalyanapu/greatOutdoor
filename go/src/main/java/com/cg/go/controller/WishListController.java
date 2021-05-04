@@ -47,8 +47,8 @@ public class WishListController {
  
 	
 	@DeleteMapping("deletewishlist/{wid}")
-	public void deleteWishlistByUserId(@PathVariable("wid") Long userId) throws WishlistException {
-		ws.deleteWishlistByUserId(userId);
+	public void deleteWishlistByUserId(@PathVariable("wid") Long wid) throws WishlistException {
+		ws.deleteWishlistByUserId(wid);
 	}
 	
 	@DeleteMapping("deleteAllWishList")

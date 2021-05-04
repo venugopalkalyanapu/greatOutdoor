@@ -22,56 +22,56 @@ public class ProductController {
 	private IProductService productService;
 
 	// This method add products
-	@PostMapping("addproduct")
+	@PostMapping("/products")
 	public ProductEntity addProduct(@RequestBody ProductEntity pe) throws ProductException {
 		return productService.addProduct(pe);
 	}
-
-	@DeleteMapping("deletebyproductid/{id}")
-	public void deleteByProductId(@PathVariable("id") String s) throws ProductException {
+//deleteproductbyid
+	@DeleteMapping("/products/{id}")
+	public void deleteByProductId(@PathVariable("id") int s) throws ProductException {
 		productService.deleteByProductId(s);
 
 	}
-
-	@GetMapping("findbyproductcategory/{category}")
+//findbypruductcategory
+	@GetMapping("/product/{category}")
 	public List<ProductEntity> findByProductByCategory(@PathVariable("category") String s) {
 
 		List<ProductEntity> p = productService.findByProductCategory(s);
 		return p;
 	}
-
-	@GetMapping("findbyproductid/{id}")
-	public ProductEntity findByProductId(@PathVariable("id") String s) {
+//find by product id
+	@GetMapping("products/{id}")
+	public ProductEntity findByProductId(@PathVariable("id") int s) {
 
 		ProductEntity p = productService.findByProductId(s);
 		return p;
 	}
-
-	@GetMapping("findallproducts")
+//find all products
+	@GetMapping("products")
 	public List<ProductEntity> findAllProducts() {
 		List<ProductEntity> pe = new ArrayList<ProductEntity>();
 		pe = productService.findAllProducts();
 		return pe;
 	}
-
-	@PutMapping("updateproduct/{id}")
-	public ProductEntity updateProduct(@PathVariable("id") String ss, @RequestBody ProductEntity productEntity)
+//update productby id
+	@PutMapping("products/{id}")
+	public ProductEntity updateProduct(@PathVariable("id") int ss, @RequestBody ProductEntity productEntity)
 			throws ProductException {
 		ProductEntity p = productService.updateProduct(productEntity);
 		return p;
 	}
-
-	@PutMapping("updateproductbyquantity/{quan},{id}")
-	public void updateProductQuantity(@PathVariable("quan") int i, @PathVariable("id") String s2) {
+//update product quantity by id
+	@PutMapping("products/{quan},{id}")
+	public void updateProductQuantity(@PathVariable("quan") int i, @PathVariable("id") int s2) {
 		productService.updateProductQuantity(i, s2);
 	}
-
-	@GetMapping("search/{keyword}")
+//search products/by keyword
+	@GetMapping("products/{keyword}")
 	public List<ProductEntity> search(@PathVariable("keyword") String keyword) {
 		return productService.search(keyword);
 	}
-
-	@GetMapping("filter/{maxprice}")
+//filter by max price
+	@GetMapping("products/{maxprice}")
 	public List<ProductEntity> filter(@PathVariable("maxprice") double maxPrice) {
 		return productService.filter(maxPrice);
 	}

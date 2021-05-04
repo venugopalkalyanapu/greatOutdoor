@@ -3,7 +3,9 @@
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -11,13 +13,9 @@ import org.hibernate.annotations.GenericGenerator;
 public class ProductEntity 
 {
 	@Id
-	@GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-        name = "UUID",
-    strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(updatable = false, nullable = false)
-	private String productId;
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="product_seq")
+	@SequenceGenerator(name="product_seq",sequenceName="product_seq", allocationSize=1)
+	private int productId;
 	private String productName;
 	private double price;
 	private String image;
@@ -34,7 +32,7 @@ public class ProductEntity
 	{
 		super();
 	}
-	public ProductEntity(String productId, String productName, double price, String image, String color, String category,
+	public ProductEntity(int productId, String productName, double price, String image, String color, String category,
 			int quantity, String manufacturer, String specification)
 	{
 		super();
@@ -50,10 +48,10 @@ public class ProductEntity
 	}
 	
 	//Getters And Setters
-	public String getProductId()  {
+	public int getProductId()  {
 		return productId;
 	}
-	public void setProductId(String productId){
+	public void setProductId(int productId){
 		this.productId = productId;
 	}
 	public String getProductName() {
@@ -104,11 +102,13 @@ public class ProductEntity
 	public void setSpecification(String specification) {
 		this.specification = specification;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
+		result = prime * result + productId;
 		return result;
 	}
 	@Override
@@ -120,10 +120,7 @@ public class ProductEntity
 		if (getClass() != obj.getClass())
 			return false;
 		ProductEntity other = (ProductEntity) obj;
-		if (productId == null) {
-			if (other.productId != null)
-				return false;
-		} else if (!productId.equals(other.productId))
+		if (productId != other.productId)
 			return false;
 		return true;
 	}
