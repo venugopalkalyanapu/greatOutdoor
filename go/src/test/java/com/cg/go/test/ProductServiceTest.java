@@ -41,7 +41,7 @@ public class ProductServiceTest {
 		 * specification
 		 */
 		// Create a productMock1 object which is to be tested
-		productMock1 = new ProductEntity("100", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(100, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		// mock the behavior of product dao to return the product entity
 		when(productDao.save(productMock1)).thenReturn(productMock1);
 
@@ -53,8 +53,8 @@ public class ProductServiceTest {
 	@Test
 	@DisplayName("Test for displaying all products")
 	public void testVeiwAllProducts() {
-		productMock1 = new ProductEntity("100", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
-		productMock2 = new ProductEntity("500", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(100, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock2 = new ProductEntity(500, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		when(productDao.findAll()).thenReturn(Stream.of(productMock1, productMock2).collect(Collectors.toList()));
 		assertEquals(2, productService.findAllProducts().size());
 	}
@@ -62,16 +62,16 @@ public class ProductServiceTest {
 	@Test
 	@DisplayName("Test to display product by given id")
 	public void testFindByProductId() {
-		productMock1 = new ProductEntity("100", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(100, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		Optional<ProductEntity> oProduct = Optional.ofNullable(productMock1);
-		when(productDao.findById("100")).thenReturn(oProduct);
-		assertEquals(productMock1, productService.findByProductId("100"));
+		when(productDao.findById(100)).thenReturn(oProduct);
+		assertEquals(productMock1, productService.findByProductId(100));
 	}
 
 	@Test
 	@DisplayName("Test to display product by given category")
 	public void testFindByProductCategory() {
-		productMock1 = new ProductEntity("100", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(100, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		List<ProductEntity> p = new ArrayList<>();
 		p.add(productMock1);
 
@@ -83,16 +83,16 @@ public class ProductServiceTest {
 	@DisplayName("Test to update product")
 	public void testUpdateProducts() throws ProductException {
 
-		productMock1 = new ProductEntity("100", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
-		when(productDao.findById("100")).thenReturn(Optional.of(productMock1));
-		assertEquals(productMock1, productService.findByProductId("100"));
+		productMock1 = new ProductEntity(100, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		when(productDao.findById(100)).thenReturn(Optional.of(productMock1));
+		assertEquals(productMock1, productService.findByProductId(100));
 	}
 
 	@Test
 	@DisplayName("Test to display product by given keyword")
 	public void testSearchProducts() {
 
-		productMock1 = new ProductEntity("100", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(100, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		List<ProductEntity> p = new ArrayList<>();
 		p.add(productMock1);
 		when(productDao.search("john")).thenReturn(p);
@@ -103,7 +103,7 @@ public class ProductServiceTest {
 	@DisplayName("Test to filter products by given max price")
 	public void testFilterProducts() {
 
-		productMock1 = new ProductEntity("100", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(100, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		List<ProductEntity> p = new ArrayList<>();
 		p.add(productMock1);
 		when(productDao.filter(25)).thenReturn(p);
@@ -112,7 +112,7 @@ public class ProductServiceTest {
 
 	@Test
 	public void testAddUserProductForDuplicateProductException() {
-		productMock1 = new ProductEntity("500", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(500, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		when(productDao.save(productMock1)).thenThrow(new ProductException("No Such Product Found"));
 		assertThrows(ProductException.class, () -> productService.addProduct(productMock1));
 	}
@@ -125,14 +125,14 @@ public class ProductServiceTest {
 
 	@Test
 	public void testNotFoundByProductId() {
-		productMock1 = new ProductEntity("500", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
-		when(productDao.findById("500")).thenThrow(new ProductException("No Such Product Found"));
-		assertThrows(ProductException.class, () -> productService.findByProductId("500"));
+		productMock1 = new ProductEntity(500, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		when(productDao.findById(500)).thenThrow(new ProductException("No Such Product Found"));
+		assertThrows(ProductException.class, () -> productService.findByProductId(500));
 	}
 
 	@Test
 	public void testNotFoundByProductCategory() {
-		productMock1 = new ProductEntity("500", "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
+		productMock1 = new ProductEntity(500, "soap", 20.5, "santoor", "orange", "soaps", 1, "john", "good");
 		when(productDao.findByProductCategory("laptop")).thenThrow(new ProductException("No Such Product Found"));
 		assertThrows(ProductException.class, () -> productService.findByProductCategory("laptop"));
 	}

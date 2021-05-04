@@ -44,9 +44,9 @@ public class OrderTest {
 	//Add Test Case
 	@Test
 	void testAddOrder() throws OrderException{
-		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
+		ProductEntity p1=new ProductEntity(123,"santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
         UserEntity u=new UserEntity("venu","1","customer","9014475650");
-		OrderEntity o=new OrderEntity("123",u,p1,2.0,980l,LocalDate.now(),LocalDate.now());
+		OrderEntity o=new OrderEntity(123,u,p1,2.0,980l,LocalDate.now(),LocalDate.now());
 		when(order.save(o)).thenReturn(o);
 		assertEquals(o, service.addOrder(o));
 	}
@@ -55,8 +55,8 @@ public class OrderTest {
     //FindAll Test Case
 	@Test
 	void testfindAllOrders() {
-		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
-	ProductEntity p2=new ProductEntity("124","santor",245.00,"imagee","red","essentials",2,"venu","childcare");
+		ProductEntity p1=new ProductEntity(123,"santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
+	ProductEntity p2=new ProductEntity(124,"santor",245.00,"imagee","red","essentials",2,"venu","childcare");
 	List<ProductEntity>p= new ArrayList<>();
 	p.add(p2);
 	p.add(p1);
@@ -75,7 +75,7 @@ public class OrderTest {
 	@Test
 	void testUpdateDate()throws OrderException{
 		OrderEntity o= new OrderEntity();
-		o.setOrderId("1233");
+		o.setOrderId(1233);
 		o.setDispatchDate(LocalDate.now());
 		o.setDeliveryDate(LocalDate.now());
 		if(order.existsById(o.getOrderId())) {

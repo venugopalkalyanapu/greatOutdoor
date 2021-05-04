@@ -40,7 +40,7 @@ public class CartTest {
 	//Add Cart Test case
 	@Test
 	void testAddCart() throws ProductException, CartException{
-		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
+		ProductEntity p1=new ProductEntity(123,"santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
 		UserEntity u=new UserEntity("venu","1","customer","9014475650");
 		
 		CartItemEntity cr=new CartItemEntity(123l,u,432.00,1299l,p1);
@@ -51,8 +51,8 @@ public class CartTest {
 	//UpdateCart TestCase
 	@Test
 	void testUpdateCart() {
-		ProductEntity p1=new ProductEntity("123","santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
-		ProductEntity p2=new ProductEntity("124","santor",245.00,"imagee","red","essentials",2,"venu","childcare");
+		ProductEntity p1=new ProductEntity(123,"santoor",245.00,"imagee","red","essentials",2,"venu","childcare");
+		ProductEntity p2=new ProductEntity(124,"santor",245.00,"imagee","red","essentials",2,"venu","childcare");
 		UserEntity u=new UserEntity("venu","1","customer","9014475650");
 		List<ProductEntity> p=new ArrayList<>();
 		p.add(p1);
