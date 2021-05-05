@@ -26,7 +26,6 @@ public class ProductEntity
 	private String specification;
 
 	
-	
 	//Constructors
 	public ProductEntity() 
 	{
