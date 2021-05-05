@@ -22,56 +22,56 @@ public class ProductController {
 	private IProductService productService;
 
 	// This method add products
-	@PostMapping("/products")
+	@PostMapping("addproduct")
 	public ProductEntity addProduct(@RequestBody ProductEntity pe) throws ProductException {
 		return productService.addProduct(pe);
 	}
 //deleteproductbyid
-	@DeleteMapping("/products/{id}")
+	@DeleteMapping("deletebyproductid/{id}")
 	public void deleteByProductId(@PathVariable("id") int s) throws ProductException {
 		productService.deleteByProductId(s);
 
 	}
 //findbypruductcategory
-	@GetMapping("/product/{category}")
+	@GetMapping("findbyproductcategory/{category}")
 	public List<ProductEntity> findByProductByCategory(@PathVariable("category") String s) {
 
 		List<ProductEntity> p = productService.findByProductCategory(s);
 		return p;
 	}
 //find by product id
-	@GetMapping("products/{id}")
+	@GetMapping("findbyproductid/{id}")
 	public ProductEntity findByProductId(@PathVariable("id") int s) {
 
 		ProductEntity p = productService.findByProductId(s);
 		return p;
 	}
 //find all products
-	@GetMapping("products")
+	@GetMapping("findallproducts")
 	public List<ProductEntity> findAllProducts() {
 		List<ProductEntity> pe = new ArrayList<ProductEntity>();
 		pe = productService.findAllProducts();
 		return pe;
 	}
 //update productby id
-	@PutMapping("products/{id}")
+	@PutMapping("updateproduct/{id}")
 	public ProductEntity updateProduct(@PathVariable("id") int ss, @RequestBody ProductEntity productEntity)
 			throws ProductException {
 		ProductEntity p = productService.updateProduct(productEntity);
 		return p;
 	}
 //update product quantity by id
-	@PutMapping("products/{quan},{id}")
+	@PutMapping("updateproductbyquantity/{quan},{id}")
 	public void updateProductQuantity(@PathVariable("quan") int i, @PathVariable("id") int s2) {
 		productService.updateProductQuantity(i, s2);
 	}
 //search products/by keyword
-	@GetMapping("products/{keyword}")
+	@GetMapping("search/{keyword}")
 	public List<ProductEntity> search(@PathVariable("keyword") String keyword) {
 		return productService.search(keyword);
 	}
 //filter by max price
-	@GetMapping("products/{maxprice}")
+	@GetMapping("filter/{maxprice}")
 	public List<ProductEntity> filter(@PathVariable("maxprice") double maxPrice) {
 		return productService.filter(maxPrice);
 	}
