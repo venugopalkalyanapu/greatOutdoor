@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.go.dao.SalesReportDAOinterface;
-import com.cg.go.entity.SaleEntity;
+import com.cg.go.entity.SalesReportEntity;
 import com.cg.go.exception.SalesReportException;
 
 
@@ -22,8 +22,8 @@ public class SalesReportService implements SalesReportServiceInterface{
 	// Find All Sales Reports
 	
 	@Override
-	public List<SaleEntity> findAllSalesReport() {
-		List<SaleEntity> list=new ArrayList<>();
+	public List<SalesReportEntity> findAllSalesReport() {
+		List<SalesReportEntity> list=new ArrayList<>();
 		SalesDAO.findAll().forEach(list1->list.add(list1));
 		return list;
 	}
@@ -31,9 +31,9 @@ public class SalesReportService implements SalesReportServiceInterface{
 	// Find Sales Report by ProductId
 	
 		@Override
-		public SaleEntity findSalesReportByProductId(Long id) {
+		public SalesReportEntity findSalesReportByProductId(Long id) {
 		    
-		    Optional<SaleEntity> sa = SalesDAO.findById(id);
+		    Optional<SalesReportEntity> sa = SalesDAO.findById(id);
 			return sa.get();
 		}
 		
@@ -61,9 +61,9 @@ public class SalesReportService implements SalesReportServiceInterface{
 	// Update Sales Reports
 	
 	@Override
-	public SaleEntity updateSalesReport(SaleEntity s) throws SalesReportException{
+	public SalesReportEntity updateSalesReport(SalesReportEntity s) throws SalesReportException{
 		Long id = s.getId();
-		Optional<SaleEntity> sa = SalesDAO.findById(id);
+		Optional<SalesReportEntity> sa = SalesDAO.findById(id);
 		if(!sa.isPresent())
 			throw new SalesReportException(id+" does not exist to update");
 		return SalesDAO.save(s);
@@ -72,7 +72,7 @@ public class SalesReportService implements SalesReportServiceInterface{
 	// Add Sales Report
 	
 	@Override
-	public String addSalesReport(SaleEntity s) {
+	public String addSalesReport(SalesReportEntity s) {
 	    SalesDAO.save(s);
 		return "Sales Report created";
 	}

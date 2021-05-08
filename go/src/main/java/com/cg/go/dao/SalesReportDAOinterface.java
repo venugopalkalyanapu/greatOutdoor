@@ -4,12 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
-import com.cg.go.entity.SaleEntity;
+import com.cg.go.entity.SalesReportEntity;
 
 
 
 @Repository
-public interface SalesReportDAOinterface extends JpaRepository<SaleEntity, Long>{
+public interface SalesReportDAOinterface extends JpaRepository<SalesReportEntity, Long>{
     
     	// Find SalesReport by Product Id
 //    

@@ -2,20 +2,20 @@ package com.cg.go.service;
 
 import java.util.List;
 
-import com.cg.go.entity.SaleEntity;
+import com.cg.go.entity.SalesReportEntity;
 import com.cg.go.exception.SalesReportException;
 
 
 public interface SalesReportServiceInterface {
-	List<SaleEntity> findAllSalesReport();
+	List<SalesReportEntity> findAllSalesReport();
 
 	String deleteAllSalesReport();
 
 	String deleteSalesReportById(Long id) throws SalesReportException;
 
-	SaleEntity findSalesReportByProductId(Long id);
+	SalesReportEntity findSalesReportByProductId(Long id);
 
-	SaleEntity updateSalesReport(SaleEntity s) throws SalesReportException;
+	SalesReportEntity updateSalesReport(SalesReportEntity s) throws SalesReportException;
 
-	String addSalesReport(SaleEntity s);
+	String addSalesReport(SalesReportEntity s);
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.go.entity.SaleEntity;
+import com.cg.go.entity.SalesReportEntity;
 import com.cg.go.exception.SalesReportException;
 
 import com.cg.go.service.SalesReportServiceInterface;
@@ -25,8 +25,8 @@ public class SalesReportController {
 	// Find All Sales Reports
 	
 	@GetMapping("/FindAllSalesReports")
-        public List<SaleEntity> findAllSalesReport(){
-        	List<SaleEntity> list = new ArrayList<SaleEntity>();
+        public List<SalesReportEntity> findAllSalesReport(){
+        	List<SalesReportEntity> list = new ArrayList<SalesReportEntity>();
         	list = SalesInterface.findAllSalesReport();
         	return list;
         }
@@ -34,8 +34,8 @@ public class SalesReportController {
 	// Find Sales Report by ProductId
 	
 	@GetMapping("/FindSalesReportbyProductId/{id}")
-	SaleEntity findSalesReportByProductId(@PathVariable("id") Long id) {
-	    SaleEntity sr = SalesInterface.findSalesReportByProductId(id);
+	SalesReportEntity findSalesReportByProductId(@PathVariable("id") Long id) {
+		SalesReportEntity sr = SalesInterface.findSalesReportByProductId(id);
 	    return sr;
 	}
 	
@@ -65,7 +65,7 @@ public class SalesReportController {
 	
 	
 		@PostMapping("/AddSalesReport")
-		public String addSalesReport(@RequestBody SaleEntity s) {
+		public String addSalesReport(@RequestBody SalesReportEntity s) {
 			String str = SalesInterface.addSalesReport(s);
 			return str;
 		}

@@ -2,32 +2,31 @@ package com.cg.go.entity;
 
 import javax.persistence.*;
 @Entity
-@Table(name="salesReport")
+@Table(name="Report")
 public class SalesReportEntity {
 	@Id
-	private long salesReportId;
+	private long id;
 	private String productId;
 	private String productName;
 	private Integer quantitySold;
 	private double totalSale;
 
 	public SalesReportEntity() {
-		
+	    
 	}
-	public SalesReportEntity(long salesReportId, String productId, String productName, Integer quantitySold,
-			double totalSale) {
-		super();
-		this.salesReportId = salesReportId;
-		this.productId = productId;
-		this.productName = productName;
-		this.quantitySold = quantitySold;
-		this.totalSale = totalSale;
+	public SalesReportEntity(long id, String productId, String productName, Integer quantitySold, double totalSale) {
+	    super();
+	    this.id = id;
+	    this.productId = productId;
+	    this.productName = productName;
+	    this.quantitySold = quantitySold;
+	    this.totalSale = totalSale;
 	}
-	public long getSalesReportId() {
-		return salesReportId;
+	public long getId() {
+	    return id;
 	}
-	public void setSalesReportId(long salesReportId) {
-		this.salesReportId = salesReportId;
+	public void setId(long id) {
+	    this.id = id;
 	}
 	public String getProductId() {
 		return productId;
@@ -55,22 +54,23 @@ public class SalesReportEntity {
 	}
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (salesReportId ^ (salesReportId >>> 32));
-		return result;
+	    final int prime = 31;
+	    int result = 1;
+	    result = prime * result + (int) (id ^ (id >>> 32));
+	    return result;
 	}
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SalesReportEntity other = (SalesReportEntity) obj;
-		if (salesReportId != other.salesReportId)
-			return false;
+	    if (this == obj)
 		return true;
-	}	
+	    if (obj == null)
+		return false;
+	    if (getClass() != obj.getClass())
+		return false;
+	    SalesReportEntity other = (SalesReportEntity) obj;
+	    if (id != other.id)
+		return false;
+	    return true;
+	}
+		
 }
