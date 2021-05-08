@@ -20,19 +20,20 @@ public class CartItemEntity
 	@JoinColumn(name="user_Id")
 	private UserEntity userId;
 	private double cartTotalPrice;
+	private int quantity;
 	private long totalQuantity;
 	@ManyToOne
     @JoinColumn(name="product_id")
 	private ProductEntity products;
 	
-
+	
 	//constructors
 	public CartItemEntity() 
 	{
 		super();
 	}
 	public CartItemEntity(Long cartId, UserEntity userId, double cartTotalPrice, long totalQuantity,
-			ProductEntity products)
+			ProductEntity products,int quantity)
 	{
 		super();
 		this.cartId = cartId;
@@ -40,6 +41,7 @@ public class CartItemEntity
 		this.cartTotalPrice = cartTotalPrice;
 		this.totalQuantity = totalQuantity;
 		this.products = products;
+		this.quantity=quantity;
 	}
 	
 	//Getters and Setters 
@@ -84,6 +86,13 @@ public class CartItemEntity
 		this.products = products;
 	}
 	
+	
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,11 +116,7 @@ public class CartItemEntity
 			return false;
 		return true;
 	}
-	@Override
-	public String toString() {
-		return "CartItemEntity [cartId=" + cartId + ", userId=" + userId + ", cartTotalPrice=" + cartTotalPrice
-				+ ", totalQuantity=" + totalQuantity + ", products=" + products + "]";
-	}
+	
 	
 
 }
